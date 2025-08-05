@@ -73,10 +73,10 @@ Built for students, professionals, and accountability groups who want to log and
 
 ---
 
-## 🛠 Tech Stack (Suggested)
+## 🛠 Tech Stack
 
 - **Frontend**: React.js + Tailwind CSS
-- **Backend**: Spring Boot or Node.js + Express
+- **Backend**: Spring Boot
 - **Database**: MySQL / PostgreSQL
 - **Authentication**: JWT
 - **Real-Time (Future)**: WebSockets (Socket.IO / STOMP)
