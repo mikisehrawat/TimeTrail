@@ -1,95 +1,105 @@
-# 📚 Study Time Tracker
+# ⏱️ TimeTrail
 
-A real-time web application where users can join study rooms, track their study time with tags, and collaborate in a productive environment. Built with support for roles like Admin and Regular users, this project helps visualize and log time spent on focused work.
+**TimeTrail** is a collaborative, real-time study tracker where users can create or join virtual study rooms, start focused timers, and build a trail of their productivity over time.
+
+Built for students, professionals, and accountability groups who want to log and reflect on their study or work patterns in a shared environment.
 
 ---
 
 ## 🚀 Features
 
-- 👤 User authentication (Admin / Regular)
-- 🏠 Create and join study rooms
-- ⏱️ Start and stop personal study timers
-- 🧮 Track total study time by user and room
-- 🔁 Handle join requests and admin approvals
-- 📊 Real-time updates (future scope)
+- 👤 **Role-based Users** – Admins and Regular users
+- 🏠 **Create / Join Rooms** – Study with others or solo
+- ⏱️ **Start/Stop Timer** – Track focused sessions
+- 🧠 **Tag Sessions** – Label your time (e.g., DSA, Reading)
+- 📊 **Track Progress** – See total time per room or user
+- 🔁 **Join Requests** – Admin approval for room access (optional)
+- 🌐 **Future** – Live session updates via WebSocket
 
 ---
 
-## 🗃️ Database Schema Overview
+## 🗃️ Database Schema
 
-### 🔸 `user` Table
+### 🔹 `user`
 | Field     | Type     | Description                |
 |-----------|----------|----------------------------|
 | `userid`  | INT      | Primary Key                |
 | `role`    | VARCHAR  | 'admin' or 'regular'       |
-| `pfp`     | TEXT     | Profile picture URL/blob   |
+| `pfp`     | TEXT     | Profile picture            |
 | `name`    | VARCHAR  | Full name                  |
-| `email`   | VARCHAR  | Unique email               |
+| `email`   | VARCHAR  | Unique user email          |
 | `password`| VARCHAR  | Hashed password            |
 
-### 🔸 `room` Table
+---
+
+### 🔹 `room`
 | Field       | Type     | Description              |
 |-------------|----------|--------------------------|
 | `room_id`   | INT      | Primary Key              |
-| `room_name` | VARCHAR  | Room name                |
+| `room_name` | VARCHAR  | Room title               |
 | `admin_id`  | INT      | FK → `user.userid`       |
 
-### 🔸 `connection` Table *(User-Room Many-to-Many)*
-| Field     | Type     | Description              |
-|-----------|----------|--------------------------|
-| `con_id`  | INT      | Primary Key              |
-| `user_id` | INT      | FK → `user.userid`       |
-| `room_id` | INT      | FK → `room.room_id`      |
+---
 
-### 🔸 `study_sessions` Table
-| Field        | Type      | Description                      |
-|--------------|-----------|----------------------------------|
-| `session_id` | INT       | Primary Key                      |
-| `user_id`    | INT       | FK → `user.userid`               |
-| `room_id`    | INT       | FK → `room.room_id`              |
-| `start_time` | DATETIME  | Timer start                      |
-| `end_time`   | DATETIME  | Timer stop                       |
-| `tag`        | VARCHAR   | Optional tag (e.g., DSA, Math)   |
+### 🔹 `connection` (Join Table)
+| Field     | Type     | Description               |
+|-----------|----------|---------------------------|
+| `con_id`  | INT      | Primary Key               |
+| `user_id` | INT      | FK → `user.userid`        |
+| `room_id` | INT      | FK → `room.room_id`       |
 
-### 🔸 `join_requests` Table *(Optional)*
+---
+
+### 🔹 `study_sessions`
+| Field        | Type      | Description                  |
+|--------------|-----------|------------------------------|
+| `session_id` | INT       | Primary Key                  |
+| `user_id`    | INT       | FK → `user.userid`           |
+| `room_id`    | INT       | FK → `room.room_id`          |
+| `start_time` | DATETIME  | Timer start time             |
+| `end_time`   | DATETIME  | Timer stop time              |
+| `tag`        | VARCHAR   | Optional label (e.g., DSA)   |
+
+---
+
+### 🔹 `join_requests` (Optional)
 | Field         | Type     | Description                    |
 |---------------|----------|--------------------------------|
 | `id`          | INT      | Primary Key                    |
 | `user_id`     | INT      | FK → `user.userid`             |
 | `room_id`     | INT      | FK → `room.room_id`            |
 | `status`      | VARCHAR  | 'pending', 'accepted', 'rejected' |
-| `requested_at`| DATETIME | Request timestamp              |
+| `requested_at`| DATETIME | Timestamp of the request       |
 
 ---
 
-## 📌 Design Principles
+## 🛠 Tech Stack (Suggested)
 
-- ❌ No object/array storage inside SQL columns (normalized schema)
-- ✅ Proper use of foreign keys and join tables
-- 🔐 Passwords stored securely (hashing required)
-- 🔁 Support for many-to-many user-room mapping
-- 🔧 Extendable for WebSocket-based real-time updates
-
----
-
-## 🛠️ Tech Stack (suggested)
-
-- **Frontend**: React.js
-- **Backend**: Spring Boot / Node.js + Express
+- **Frontend**: React.js + Tailwind CSS
+- **Backend**: Spring Boot or Node.js + Express
 - **Database**: MySQL / PostgreSQL
-- **Auth**: JWT-based authentication
-- **Optional**: Socket.IO or WebSocket for real-time updates
+- **Authentication**: JWT
+- **Real-Time (Future)**: WebSockets (Socket.IO / STOMP)
 
 ---
 
-## 📈 Future Scope
+## 🧠 Design Principles
 
-- Live timers visible to all users in the same room
-- Leaderboards or time rankings per room
-- Calendar view for past study sessions
-- Social login & mobile responsiveness
+- ✅ Normalized DB schema (no arrays/objects in SQL)
+- 🔐 Secure auth & password storage
+- 🔁 Modular roles and room-user connections
+- 💡 Extendable for real-time and analytics
 
 ---
 
-## 📂 Folder Structure (example)
+## 📈 Future Enhancements
+
+- Real-time timer updates in rooms
+- Daily/weekly/monthly study charts
+- Leaderboards and competition modes
+- Calendar heatmaps for productivity
+
+---
+
+## 📁 Folder Structure (Sample)
 
