@@ -73,10 +73,10 @@ Built for students, professionals, and accountability groups who want to log and
 
 ---
 
-## 🛠 Tech Stack
+## 🛠 Tech Stack (Suggested)
 
 - **Frontend**: React.js + Tailwind CSS
-- **Backend**: Spring Boot
+- **Backend**: Spring Boot or Node.js + Express
 - **Database**: MySQL / PostgreSQL
 - **Authentication**: JWT
 - **Real-Time (Future)**: WebSockets (Socket.IO / STOMP)
@@ -100,4 +100,6 @@ Built for students, professionals, and accountability groups who want to log and
 - Calendar heatmaps for productivity
 
 ---
+
+## 📁 Folder Structure (Sample)
 
