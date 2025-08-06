@@ -25,7 +25,7 @@ Built for students, professionals, and accountability groups who want to log and
 |-----------|----------|----------------------------|
 | `userid`  | INT      | Primary Key                |
 | `role`    | VARCHAR  | 'admin' or 'regular'       |
-| `pfp`     | TEXT     | Profile picture            |
+| `pfp`     | .jpg     | Profile picture            |
 | `name`    | VARCHAR  | Full name                  |
 | `email`   | VARCHAR  | Unique user email          |
 | `password`| VARCHAR  | Hashed password            |
@@ -47,6 +47,7 @@ Built for students, professionals, and accountability groups who want to log and
 | `con_id`  | INT      | Primary Key               |
 | `user_id` | INT      | FK → `user.userid`        |
 | `room_id` | INT      | FK → `room.room_id`       |
+| `is_admin`| boolean  | `true`/`false`            |
 
 ---
 
@@ -62,7 +63,7 @@ Built for students, professionals, and accountability groups who want to log and
 
 ---
 
-### 🔹 `join_requests` (Optional)
+### 🔹 `join_requests`
 | Field         | Type     | Description                    |
 |---------------|----------|--------------------------------|
 | `id`          | INT      | Primary Key                    |
@@ -70,6 +71,14 @@ Built for students, professionals, and accountability groups who want to log and
 | `room_id`     | INT      | FK → `room.room_id`            |
 | `status`      | VARCHAR  | 'pending', 'accepted', 'rejected' |
 | `requested_at`| DATETIME | Timestamp of the request       |
+
+### 🔹 `Tags`
+| Field     | Type     | Description               |
+|-----------|----------|---------------------------|
+| `tag_id`  | INT      | Primary Key               |
+| `room_id` | INT      | FK → `room.room_id`       |
+| `tag_name`| TEXT     | tag name                  |
+| `description`| TEXT  | Tag Description           |
 
 ---
 
