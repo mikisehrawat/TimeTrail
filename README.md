@@ -82,6 +82,48 @@ Built for students, professionals, and accountability groups who want to log and
 
 ---
 
+## 📡 API Endpoints
+
+The backend supports a RESTful API structure divided by user roles: **User** and **Admin**.
+
+---
+
+### 👤 User APIs
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/auth/signup` | Register a new user |
+| `POST` | `/api/auth/login` | Authenticate and get JWT token |
+| `GET` | `/api/users/me` | Fetch current user's profile |
+| `PUT` | `/api/users/me/update` | Update user profile |
+| `GET` | `/api/users/me/rooms` | Get all rooms the user has joined |
+| `POST` | `/api/users/me/leave-room/:roomId` | Leave a specific room |
+| `GET` | `/api/users/me/sessions` | Get user's study sessions |
+| `POST` | `/api/users/me/time/add` | Add a study session |
+| `DELETE` | `/api/users/me/time/remove/:sessionId` | Remove a study session |
+| `GET` | `/api/users/me/leaderboard/:roomId` | View leaderboard for a room |
+| `GET` | `/api/rooms/:roomId` | Get room details (tags, members) |
+| `POST` | `/api/rooms/:roomId/request-join` | Request to join a room |
+
+---
+
+### 🛡️ Admin APIs
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/rooms` | Create a new room |
+| `DELETE` | `/api/rooms/:roomId` | Delete a room |
+| `POST` | `/api/rooms/:roomId/tags` | Create a tag for a room |
+| `PUT` | `/api/rooms/:roomId/tags/:tagId` | Edit a tag |
+| `DELETE` | `/api/rooms/:roomId/tags/:tagId` | Delete a tag |
+| `GET` | `/api/rooms/:roomId/requests` | View all join requests for a room |
+| `POST` | `/api/rooms/:roomId/requests/:requestId/accept` | Accept a join request |
+| `POST` | `/api/rooms/:roomId/requests/:requestId/reject` | Reject a join request |
+| `DELETE` | `/api/rooms/:roomId/members/:userId/remove` | Remove a user from a room |
+
+---
+
+
 ## 🛠 Tech Stack
 
 - **Frontend**: React.js + Tailwind CSS
